@@ -6,7 +6,7 @@ class User_model extends CI_Model
 	{
 		return $this->db
 					->where('email', $data['email'])
-					->where('password', $data['password'])
+					->select('first_name, last_name, email, password')
 					->get('users')
 					->row();
 

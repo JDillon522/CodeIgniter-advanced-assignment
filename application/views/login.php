@@ -27,6 +27,19 @@
 				);
 				return false;
 			});
+			$('#login_form').submit(function(){
+				$.post
+				(
+					$(this).attr('action'),
+					$(this).serialize(),
+					function(data){
+						console.log(data);
+						$('#alert_box').html(data);
+					},
+					"json"
+				);
+				return false;
+			});
 		});
 	</script>
 

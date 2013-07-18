@@ -1,0 +1,9 @@
+.hero-unit {
+	background-image: url('../img/binary-wide.png');
+	color: white;
+	text-shadow: 2px 2px black;
+}
+
+.thumbnail {
+	height: 120px;
+}

@@ -8,11 +8,6 @@ class User extends CI_Controller
 		parent:: __construct();
 		$this->load->model('User_model');
 	}	
-
-	public function login()
-	{	
-		$this->load->view('index');
-	}
 	
 	public function process_login()
 	{
@@ -21,19 +16,32 @@ class User extends CI_Controller
 		$this->form_validation->set_rules('password0', 'Password', 'min_length[6]|required');
 		if ($this->form_validation->run() == FALSE) 
 		{
-			echo validation_errors();
+			$errors = "<div class='alert alert-error alert-block' id='error-box'>" . validation_errors() . "</div>";
+
+			echo json_encode($errors);
 		}
 		else
 		{
 			$this->load->library('encrypt');
-
+			
 			$data = array();
 			$data['email'] = $this->input->post('email');
-			$decrypt_password = $this->encrypt->decode($this->input->post('password0'));
-			$data['password'] = $decrypt_password;
+			
 			$user = $this->User_model->get_user($data);
-			$this->session->set_userdata('user_session', $user);
-			redirect(base_url('/user/profile'));
+		
+			$decrypted_password = $this->encrypt->decode($user->password);
+
+			if (count($user) > 0 AND $decrypted_password == $this->input->post('password0')) 
+			{
+				$this->session->set_userdata('user_session', $user);
+				$this->load->view('main.php');
+			}
+			else
+			{
+				$errors = "<div class='alert alert-error alert-block' id='error-box'><p>Your login information did not match our reccords. Try again</p></div>";
+
+			echo json_encode($errors);
+			}		
 		}
 	}
 
