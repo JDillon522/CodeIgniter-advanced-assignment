@@ -33,8 +33,9 @@ class User extends CI_Controller
 
 			if (count($user) > 0 AND $decrypted_password == $this->input->post('password0')) 
 			{
+				$this->load->library('session');
 				$this->session->set_userdata('user_session', $user);
-				$this->load->view('main.php');
+				echo json_encode("success");
 			}
 			else
 			{

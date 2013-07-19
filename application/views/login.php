@@ -33,8 +33,12 @@
 					$(this).attr('action'),
 					$(this).serialize(),
 					function(data){
-						console.log(data);
-						$('#alert_box').html(data);
+						if(data != "success"){
+							console.log(data);
+							$('#alert_box').html(data);
+						} else {
+							window.location.href = "/nav/main";
+						}
 					},
 					"json"
 				);
