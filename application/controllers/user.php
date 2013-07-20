@@ -16,9 +16,10 @@ class User extends CI_Controller
 		$this->form_validation->set_rules('password0', 'Password', 'min_length[6]|required');
 		if ($this->form_validation->run() == FALSE) 
 		{
-			$errors = "<div class='alert alert-error alert-block' id='error-box'>" . validation_errors() . "</div>";
+			$errors = "<div class='alert-box alert' id='error-box'>" . validation_errors() . "</div>";
 
 			echo json_encode($errors);
+			die();
 		}
 		else
 		{
@@ -33,13 +34,12 @@ class User extends CI_Controller
 
 			if (count($user) > 0 AND $decrypted_password == $this->input->post('password0')) 
 			{
-				$this->load->library('session');
 				$this->session->set_userdata('user_session', $user);
-				echo json_encode("success");
+				$this->load->view('main.php');
 			}
 			else
 			{
-				$errors = "<div class='alert alert-error alert-block' id='error-box'><p>Your login information did not match our reccords. Try again</p></div>";
+				$errors = "<div class='alert-box alert' id='error-box'><p>Your login information did not match our reccords. Try again</p></div>";
 
 			echo json_encode($errors);
 			}		
@@ -57,8 +57,8 @@ class User extends CI_Controller
 
 		if ($this->form_validation->run() == FALSE) 
 		{
-			$errors = "<div class='alert alert-error alert-block' id='error-box'>" . validation_errors() . "</div>";
-
+			$errors = "<div class='alert-box alert' id='error-box'>" . validation_errors() . "</div>";
+			die();
 			echo json_encode($errors);
 		}
 		else
@@ -72,7 +72,8 @@ class User extends CI_Controller
 				'password' => $encrypted_password
 				);
 			$user = $this->User_model->register_user($data);
-			$success = "<div class='alert alert-success alert-block' id='success-box'><p>Thank you for submitting your data. You may now log in.</p></div>";
+			$success = "<div class='alert-box success' id='success-box'><p>Thank you for submitting your data. You may now log in.</p></div>";
+				die();
 				echo json_encode($success);
 		}
 	}

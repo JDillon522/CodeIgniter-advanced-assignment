@@ -10,9 +10,7 @@ USE `codeigniter_db` ;
 -- -----------------------------------------------------
 CREATE  TABLE IF NOT EXISTS `codeigniter_db`.`users` (
   `id` INT NOT NULL AUTO_INCREMENT ,
-  `first_name` VARCHAR(45) NULL ,
-  `last_name` VARCHAR(45) NULL ,
-  `email` VARCHAR(100) NULL ,
+  `name` VARCHAR(45) NULL ,
   `password` VARCHAR(200) NULL ,
   PRIMARY KEY (`id`) )
 ENGINE = InnoDB;
