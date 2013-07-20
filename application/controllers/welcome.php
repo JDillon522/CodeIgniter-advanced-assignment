@@ -19,7 +19,15 @@ class Welcome extends CI_Controller {
 	 */
 	public function index()
 	{
+		$data = array(
+			'title' => 'Binaric Aspirations',
+			'addons' => '<link rel="stylesheet" type="text/css" href="../../assets/CSS/index.css">',
+			'scripts' => ''
+			);
+
+		$this->load->view('headinfo', $data);
 		$this->load->view('index.php');
+		$this->load->view('bottom', $data);
 	}
 }
 

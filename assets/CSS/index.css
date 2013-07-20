@@ -1,9 +1,10 @@
-.hero-unit {
-	background-image: url('../img/binary-wide.png');
-	color: white;
-	text-shadow: 2px 2px black;
-}
 
 .thumbnail {
 	height: 120px;
+}
+
+#top-bar-title {
+	color: white;
+	padding-left: 10px;
+	padding-right: 10px;
 }
