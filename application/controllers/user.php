@@ -19,7 +19,6 @@ class User extends CI_Controller
 			$errors = "<div class='alert-box alert' id='error-box'>" . validation_errors() . "</div>";
 
 			echo json_encode($errors);
-			die();
 		}
 		else
 		{
@@ -58,7 +57,6 @@ class User extends CI_Controller
 		if ($this->form_validation->run() == FALSE) 
 		{
 			$errors = "<div class='alert-box alert' id='error-box'>" . validation_errors() . "</div>";
-			die();
 			echo json_encode($errors);
 		}
 		else
@@ -73,7 +71,6 @@ class User extends CI_Controller
 				);
 			$user = $this->User_model->register_user($data);
 			$success = "<div class='alert-box success' id='success-box'><p>Thank you for submitting your data. You may now log in.</p></div>";
-				die();
 				echo json_encode($success);
 		}
 	}

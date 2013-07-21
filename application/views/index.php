@@ -1,28 +1,27 @@
 
-<div class="row">
-	<div class='large-12'>
-		<nav class="top-bar">
-		  <ul class="title-area">
-		    <!-- Title Area -->
-		    <li class="name">
-		      <h1 id='top-bar-title'>Begin: </h1>
-		    </li>
-		    <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
-		    <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
-		  </ul>
+<div class='large-12'>
+	<nav class="top-bar">
+	  <ul class="title-area">
+	    <!-- Title Area -->
+	    <li class="name">
+	      <h1 id='top-bar-title'>Begin: </h1>
+	    </li>
+	    <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
+	    <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+	  </ul>
 
-		  <section class="top-bar-section">
-		    <!-- Left Nav Section -->
-		    <ul class="left">
-		      <li class="divider"></li>
-		      <li><a href="#" data-reveal-id="login-modal">Login</a></li>
-		      <li class="divider"></li>
-		      <li><a href="#" data-reveal-id="register-modal">Register</a></li>
-		      <li class="divider"></li>          
-		    </ul>
-		</nav>
-	</div>
+	  <section class="top-bar-section">
+	    <!-- Left Nav Section -->
+	    <ul class="left">
+	      <li class="divider"></li>
+	      <li><a href="#" data-reveal-id="login-modal">Login</a></li>
+	      <li class="divider"></li>
+	      <li><a href="#" data-reveal-id="register-modal">Register</a></li>
+	      <li class="divider"></li>          
+	    </ul>
+	</nav>
 </div>
+
 <div class="row">
 	<div class="large-4 columns">
 		<h1>Come see the beauty of 1's and 0's :<small> We seek to make what is digital impact what is reality - one computation at a time.</small></h1></p>
