@@ -8,7 +8,10 @@
 				echo "<pre>";
 				var_dump($this->session->userdata); 
 				echo "</pre>";
-			echo $this->session->userdata('user_session')['first_name']; ?></li>
+			$temp_session = $this->session->userdata('user_session');
+			echo $temp_session['first_name']; 
+			// var_dump($temp_session);
+			?></li>
 			
 		</ul>
 	</div>
