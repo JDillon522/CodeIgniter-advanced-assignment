@@ -1,15 +1,28 @@
-<?php
-echo "<pre>";
-var_dump($this->session->userdata);
-echo "</pre>";
-echo "<br>";
+<div class="row">
+	<div class="small-6 columns">
+		<h1>User Info</h1>
+		<ul>
 
-echo "welcome to main.php";
+			<li>
+				<?php 
+				echo "<pre>";
+				var_dump($this->session->userdata); 
+				echo "</pre>";
+			echo $this->session->userdata('user_session')['first_name']; ?></li>
+			
+		</ul>
+	</div>
+</div>
 
-/*  notes
+
+
+<!--  notes
 dashboard
 classes:
 - post message
 - display message
 - post comment
 - display comment
+ -->
+
+

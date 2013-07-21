@@ -112,7 +112,7 @@
 				function(data){
 					if (data['errors'] == '') {
 						consle.log(data);
-					};
+					},
 					else{
 						console.log(data);
 						$('#alert_box').html(data);
