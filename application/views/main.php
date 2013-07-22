@@ -2,16 +2,17 @@
 	<div class="small-6 columns">
 		<h1>User Info</h1>
 		<ul>
-
+			<li>	
+			<?php $temp_session = $this->session->userdata('user_session');
+			echo $temp_session->first_name; 
+			?>
+			</li>
 			<li>
-				<?php 
-				echo "<pre>";
-				var_dump($this->session->userdata); 
-				echo "</pre>";
-			$temp_session = $this->session->userdata('user_session');
-			echo $temp_session['first_name']; 
-			// var_dump($temp_session);
-			?></li>
+				<?= $temp_session->last_name; ?>
+			</li>
+			<li>
+				<?= $temp_session->email; ?>
+			</li>
 			
 		</ul>
 	</div>
