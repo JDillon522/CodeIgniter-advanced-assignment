@@ -84,7 +84,7 @@
 			<input type="submit" id="submitbtn" placeholder="Submit" class="button"/>	
 		</form>
 		<!-- Alert Boxs -->
-		<div id="alert_box">
+		<div id="alert_box2">
 		</div>
 	<a class="close-reveal-modal">&#215;</a>
 </div>
@@ -98,7 +98,7 @@
 				$(this).serialize(),
 				function(data){
 					console.log(data);
-					$('#alert_box').html(data);
+					$('#alert_box2').html(data);
 				},
 				"json"
 			);
@@ -110,9 +110,10 @@
 				$(this).attr('action'),
 				$(this).serialize(),
 				function(data){
-					if (data['errors'] == '') {
-						consle.log(data);
-					},
+					if (data == "success") {
+						window.location.href = "../wall";
+
+					}
 					else{
 						console.log(data);
 						$('#alert_box').html(data);

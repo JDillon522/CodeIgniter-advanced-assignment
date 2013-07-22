@@ -6,16 +6,9 @@ class User_model extends CI_Model
 	{
 		return $this->db
 					->where('email', $data['email'])
-					->select('first_name, last_name, email, password')
+					->select('first_name, last_name, email, password, id')
 					->get('users')
 					->row();
-
-		// $user_data = $this->db->query("SELECT *
-		// 						 FROM users
-		// 						 WHERE email = '{$data['email']}'
-		// 						 AND password = '{$data['password']}'")
-		// 						 ->row();
-		// return $user_data;
 	}
 
 	public function register_user($user)

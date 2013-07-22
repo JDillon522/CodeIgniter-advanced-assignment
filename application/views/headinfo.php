@@ -6,7 +6,7 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width" />
 
-<title><?php echo $title; ?></title>
+<title><?= $title; ?></title>
 
 <!-- JQuery + JQuery UI -->
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
@@ -19,6 +19,7 @@
 
 <!-- Extra JS / CSS / Addons / Whatever -->
 <?php echo $addons; ?>
+
 
 </head>
 <body>

@@ -1,8 +1,7 @@
 body {
 	background-color: #73bf86;
+	min-height: 1000px;
 }
-
-
 
 #top-bar-title {
 	color: white;
