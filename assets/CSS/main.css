@@ -1,5 +1,29 @@
+body {
+	background-color: #73bf86;
+}
+
+
+
 #top-bar-title {
 	color: white;
 	padding-left: 10px;
 	padding-right: 10px;
+}
+
+textarea {
+	height:auto;
+}
+
+.comment {
+	text-align: right;
+	border-left: none;
+	border-right: 1px solid #dddddd;
+}
+
+.post-content {
+	border:1px solid #dddddd;
+	border-radius: 3px;
+	padding-top: 15px;
+	padding-bottom: 15px;
+	color: #3e3e40;
 }

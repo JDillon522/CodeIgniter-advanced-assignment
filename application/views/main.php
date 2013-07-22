@@ -13,11 +13,37 @@
 			<li>
 				<?= $temp_session->email; ?>
 			</li>
-			
 		</ul>
 	</div>
 </div>
+<div class="row">
+	<div cass="small-12 columns">
+		<form method="post" action="/dashboard_model/log_post">
+			<label>Leave a Message:</label>
+			<textarea rows="6" placeholder="Type your message..." name="post-text"></textarea>
+			<input type="submit" name="submit-button" value="Submit">
+		</form>
+	</div>
+</div>
 
+<div class="row post-content">
+	<div class="small-12 columns">
+		<blockquote>
+			Text messageText message Text message Text message Text message Text message 
+			Text message Text message Text message 
+			Text message Text message Text message Text message 
+			<cite>Joseph Dillon</cite>
+		</blockquote>
+	</div>
+	<div class="small-12 columns">
+		<blockquote class="comment">
+			Text messageText message Text message Text message Text message Text message 
+			Text message Text message Text message 
+			Text message Text message Text message Text message 
+			<cite>Joseph Dillon</cite>
+		</blockquote>
+	</div>
+</div>
 
 
 <!--  notes

@@ -1,6 +1,6 @@
 <?php
 
-class Dashboard_Model extends CI_Controller
+class Post_model extends CI_Controller
 {
 	public function Log_post($post_data)
 	{
