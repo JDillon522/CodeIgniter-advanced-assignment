@@ -2,7 +2,8 @@
 
 class Wall extends CI_Controller
 {
-	public function __construct()
+
+	public function main()
 	{
 		$data = array(
 			'title' => 'Main',
@@ -15,10 +16,10 @@ class Wall extends CI_Controller
 		$this->load->view('wall');
 		$this->load->view('bottom', $data);
 		
-		$this->load->model('Post_model');
-		$posts = $this->Post_model->pull_post();
-		
-	} 
+	}
+
+
+
 
 	public function load()
 	{
