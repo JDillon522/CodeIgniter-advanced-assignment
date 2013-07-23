@@ -8,34 +8,21 @@ class Post_model extends CI_Controller
 		$this->db->set('edited_at', 'NOW()', FALSE);
 
 		return $this->db->insert('posts', $data);
-		// text
-		// created at
-		// updated at
-		// user id
 	}
 
-	public function pog_comment($comment_data)
+	public function log_comment($comment_data)
 	{
 		// log comment data
 	}
 
 	public function pull_post()
 	{
-		$message_data = $this->db
-					    	 ->get('posts, users')
-							 ->join('users', 'users.id = posts.users_id'),
-							 ->row();
-
-		echo $message_data;
-		die();
-
-		// $query = "SELECT message, first_name, last_name, messages.created_at, messages.id
-		// 		FROM messages
-		// 		JOIN users
-		// 		ON users.id = messages.users_id
-		// 		ORDER BY created_at DESC";
-		// $post_data = fetch_all($query);
-		// return $post_data;
+		$result = $this->db
+		    	->select('*')
+		    	->from('posts')
+				->join('users', 'users.id = posts.users_id')
+				->get();
+		return $result->result_array();
 	}
 
 	public function Pull_comment()

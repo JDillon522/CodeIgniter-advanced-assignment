@@ -18,7 +18,7 @@
 </div>
 <div class="row">
 	<div cass="small-12 columns">
-		<form method="post" action="../post/add_post">
+		<form method="post" action="../wall/add_post">
 			<input type="hidden" name="user_id" value="<?= $temp_session->id ?>">
 			<label>Leave a Message:</label>
 			<textarea rows="6" placeholder="Type your message..." name="post-text"></textarea>
@@ -27,19 +27,10 @@
 	</div>
 </div>
 
-<?php 
-	// include('');
-	// $wall = new Wall(); 
-	// echo "<pre>";
-	// var_dump($wall);
-	// echo "</pre>";
-	// die();
-
-	// foreach ($wall as $post) 
-	// {
-	// 	$post_entry = $this->wall->display_post($post);
-	// }
-?>
+<div id="post_area">
+<!-- posts appended here -->
+<?php $posts ?>
+</div>
 
 <div class="row post-content">
 	<div class="small-12 columns">

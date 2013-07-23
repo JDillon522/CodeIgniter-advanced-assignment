@@ -111,7 +111,7 @@
 				$(this).serialize(),
 				function(data){
 					if (data == "success") {
-						window.location.href = "wall/main";
+						window.location.href = "wall/index";
 
 					}
 					else{
