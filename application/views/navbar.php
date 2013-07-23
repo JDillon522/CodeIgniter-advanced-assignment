@@ -20,5 +20,10 @@
 	      <li><a href="#" data-reveal-id="register-modal">Profile</a></li>
 	      <li class="divider"></li>          
 	    </ul>
+	    <ul class="right">
+	    	<li class="divider"></li>
+	    	<li><a href="#">Logout</a></li>
+	    	<li class="divider"></li>
+	    </ul>
 	</nav>
 </div>
