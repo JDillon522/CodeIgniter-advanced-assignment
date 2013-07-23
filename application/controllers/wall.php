@@ -2,13 +2,13 @@
 
 class Wall extends CI_Controller
 {
-	var $posts;
+	var $view_data;
 
 	public function __construct()
 	{
 		parent:: __construct();
 		$this->load->model('Post_model');
-		$posts = $this->display_post();
+		$this->view_data = $this->display_post();
 	}
 
 	public function index()
@@ -17,12 +17,12 @@ class Wall extends CI_Controller
 			'title' => 'Main',
 			'addons' => '<link rel="stylesheet" type="text/css" href="../../assets/CSS/main.css">',
 			'scripts' => ' ',
-			'posts' => $posts
+			'posts' => $this->view_data
 			);
 
 		$this->load->view('headinfo', $data);
 		$this->load->view('navbar');
-		$this->load->view('wall', $posts);
+		$this->load->view('wall', $data);
 		$this->load->view('bottom', $data);
 		
 	}
@@ -40,32 +40,43 @@ class Wall extends CI_Controller
 
 	public function display_post()
 	{
-		$posts = $this->Post_model->pull_post();
-		
-		foreach ($posts as $key) 
+		$content = $this->Post_model->pull_post();
+		$html = NULL;
+		foreach ($content as $key) 
 		{
-			$message_data = array(
+			$message_data[] = array(
 			'author_name' => $key['first_name'] . " " . $key['last_name'],
 			'text' => $key['text'],
 			'created_at' => $key['created_at'],				
-			'message_id' => $key['id'],
+			'id' => $key['id'],
 			);
-
-		// echo $message_data['message_id'];
-		$this->load->view('posts/post_html_top.html', $message_data);
+		$html .= "
+			<div class='row'>
+				<div class='large-12 columns'>
+					<br />
+					<blockquote>
+						<p>" . $message_data[0]["text"] . "</p>
+						<small>" 
+							. $message_data[0]['author_name'] . " : " . $message_data[0]['created_at'] . "
+						</small>
+					</blockquote>
+					<br />
+				</div>
+			</div>";
+		$message_data = array();
+		
+		// echo $message_data['id'];
+		
+		// $this->load->view('/posts/post_html_top.php', $message_data);
+		
 		// $comment_data = fetch_comment($message_data);
 		// insert_comment($comment_data);
-		$this->load->view('posts/post_html_bottom.html');
+		// $this->load->view('/posts/post_html_bottom.php');
+
+		// $message_data = array();	
 		}
+		return $html;
 	}
-
-
-
-	
-
-
-
-
 
 
 	public function Display_comment()

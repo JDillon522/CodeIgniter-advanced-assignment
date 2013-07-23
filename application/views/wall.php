@@ -27,38 +27,12 @@
 	</div>
 </div>
 
-<div id="post_area">
-<!-- posts appended here -->
-<?php $posts ?>
-</div>
-
-<div class="row post-content">
-	<div class="small-12 columns">
-		<blockquote>
-			Text messageText message Text message Text message Text message Text message 
-			Text message Text message Text message 
-			Text message Text message Text message Text message 
-			<cite>Joseph Dillon</cite>
-		</blockquote>
-	</div>
-	<div class="small-12 columns">
-		<blockquote class="comment">
-			Text messageText message Text message Text message Text message Text message 
-			Text message Text message Text message 
-			Text message Text message Text message Text message 
-			<cite>Joseph Dillon</cite>
-		</blockquote>
-	</div>
+<div id="row post-content">
+	<!-- posts appended here -->
+	<?php 
+	echo $posts ?>
 </div>
 
 
-<!--  notes
-dashboard
-classes:
-- post message
-- display message
-- post comment
-- display comment
- -->
 
 

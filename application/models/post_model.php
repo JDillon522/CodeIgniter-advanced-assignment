@@ -1,6 +1,6 @@
 <?php
 
-class Post_model extends CI_Controller
+class Post_model extends CI_Model
 {
 	public function log_post($data)
 	{
