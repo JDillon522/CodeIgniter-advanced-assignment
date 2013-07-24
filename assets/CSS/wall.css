@@ -1,9 +1,5 @@
-body {
-	background-color: #074973;
-	min-height: 1000px;
-}
 #top-content {
-	background-color: #bbdecd;
+	background-color: white;
 	padding: 20px;
 	margin-bottom: 20px;
 	border: 1px solid black;
@@ -20,11 +16,6 @@ body {
 	font-weight: 500;
 }
 
-#top-bar-title {
-	color: white;
-	padding-left: 10px;
-	padding-right: 10px;
-}
 
 #post-form {
 	padding-left: 15px;
@@ -53,7 +44,7 @@ textarea {
 	padding-bottom: 15px;
 	box-shadow: 2px 5px 5px 2px #252526;
 	margin-bottom: 20px;
-	background-color: #bbdecd;
+	background-color: white;
 }
 
 blockquote p, blockquote small {

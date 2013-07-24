@@ -13,16 +13,16 @@
 	    <!-- Left Nav Section -->
 	    <ul class="left">
 	      <li class="divider"></li>
-	      <li><a href="#" data-reveal-id="login-modal">Dashboard</a></li>
+	      <li><a href="/dashboard/index">Dashboard</a></li>
 	      <li class="divider"></li>
-	      <li><a href="#" data-reveal-id="register-modal">Admin</a></li>
+	      <li><a href="#">Admin</a></li>
 	      <li class="divider"></li> 
-	      <li><a href="#" data-reveal-id="register-modal">Profile</a></li>
+	      <li><a href="#">Profile</a></li>
 	      <li class="divider"></li>          
 	    </ul>
 	    <ul class="right">
 	    	<li class="divider"></li>
-	    	<li><a href="#">Logout</a></li>
+	    	<li><a href="/user/logout">Logout</a></li>
 	    	<li class="divider"></li>
 	    </ul>
 	</nav>

@@ -74,4 +74,11 @@ class User extends CI_Controller
 				echo json_encode($success);
 		}
 	}
+
+	public function logout()
+	{
+		$this->session->sess_destroy();
+		header('location: /welcome/index');
+	}
+
 }

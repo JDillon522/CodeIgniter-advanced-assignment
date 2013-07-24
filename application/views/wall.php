@@ -5,7 +5,8 @@
 		<ul id="user-info">
 			<li>	
 				<span>
-				<?php $temp_session = $this->session->userdata('user_session');
+				<?php
+				$temp_session = $this->session->userdata('user_session');
 				echo $temp_session->first_name; 
 				?>
 				</span>

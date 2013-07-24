@@ -1,0 +1,10 @@
+body {
+	background-color: #074973;
+	min-height: 1000px;
+}
+
+#top-bar-title {
+	color: white;
+	padding-left: 10px;
+	padding-right: 10px;
+}

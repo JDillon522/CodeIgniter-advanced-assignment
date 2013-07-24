@@ -111,7 +111,7 @@
 				$(this).serialize(),
 				function(data){
 					if (data == "success") {
-						window.location.href = "wall/index";
+						window.location.href = "/dashboard/index";
 
 					}
 					else{
@@ -125,3 +125,4 @@
 		});
 	});
 </script>
+

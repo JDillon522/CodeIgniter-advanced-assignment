@@ -11,13 +11,23 @@ class Wall extends CI_Controller
 		$this->load->model('Post_model');
 		$this->load->model('Comment_model');
 		$this->view_data = $this->display_post();
+		$logged_in = $this->check_session();
+	}
+
+	private function check_session()
+	{
+		if ($this->session->userdata('user_session') == '') 
+		{
+			header('location: /welcome/index');
+		}
 	}
 
 	public function index()
 	{	
 		$data = array(
 			'title' => 'Main',
-			'addons' => '<link rel="stylesheet" type="text/css" href="../../assets/CSS/wall.css">',
+			'addons' => '<link rel="stylesheet" type="text/css" href="../../assets/CSS/wall.css">
+			<link rel="stylesheet" type="text/css" href="../../assets/CSS/base.css">',
 			'scripts' => ' ',
 			'posts' => $this->view_data
 			);
@@ -120,4 +130,6 @@ class Wall extends CI_Controller
 		}
 		return $html_comments;
 	}
+
+
 }
