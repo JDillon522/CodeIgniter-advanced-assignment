@@ -169,8 +169,16 @@
 
 <!-- Pofile -->
 <div class="reveal-modal small" id="profile">
-	<h3>Login:</h3>
-		add remove
+	<?php $temp_session = $this->session->userdata('user_session'); ?>
+	<h3>Personal Profile</h3>
+	<p>Name: <?php echo $temp_session->first_name . " " . $temp_session->last_name ?></p>
+	<p>Eamil: <?php echo $temp_session->email ?></p>
+	<p>ID #: <?php echo $temp_session->id?></p>
+	<p>Status: <?php if ($temp_session->id == 1) 
+						{
+						echo "Admin";
+						}
+						else{ echo "User"; } ?></p>
 	<a class="close-reveal-modal">&#215;</a>
 </div>
 
