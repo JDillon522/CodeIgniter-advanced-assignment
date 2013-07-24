@@ -1,3 +1,16 @@
+body {
+	background-color: #074973;
+	min-height: 1000px;
+}
+
+.content {
+	background-color: white;
+	padding: 20px;
+	margin-bottom: 20px;
+	border: 1px solid black;
+	box-shadow: 2px 5px 5px 2px #252526;
+	border-radius: 3px;
+}
 
 .thumbnail {
 	height: 120px;

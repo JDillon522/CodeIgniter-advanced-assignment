@@ -33,13 +33,32 @@ class Wall extends CI_Controller
 			);
 
 		$this->load->view('headinfo', $data);
-		$this->load->view('navbar');
+		if ($this->admin()) 
+		{
+			$this->load->view('navbar_admin');
+		}
+		else
+		{
+			$this->load->view('navbar');
+		}
 		$this->load->view('wall', $data);
 		$this->load->view('bottom', $data);
 		
 	}
 
-	
+	public function admin()
+	{
+		$temp_session = $this->session->userdata('user_session');
+		if ($temp_session->id == 1) 
+		{
+			return TRUE; 
+		}
+		else
+		{
+			return FALSE;
+		}
+	}
+
 	public function add_post()
 	{
 		$data = array(

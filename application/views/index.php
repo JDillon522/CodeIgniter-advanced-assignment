@@ -22,7 +22,7 @@
 	</nav>
 </div>
 
-<div class="row">
+<div class="row content">
 	<div class="large-4 columns">
 		<h1>Come see the beauty of 1's and 0's :<small> We seek to make what is digital impact what is reality - one computation at a time.</small></h1></p>
 	</div>

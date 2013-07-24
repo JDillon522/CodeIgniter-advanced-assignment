@@ -15,7 +15,16 @@
 	      <li class="divider"></li>
 	      <li><a href="/dashboard/index">Dashboard</a></li>
 	      <li class="divider"></li>
-	      <li><a href="#">Personal Profile</a></li>
+	      
+	      <li class="has-dropdown"><a href="#">Admin</a>
+	      	<ul class="dropdown">
+	      		<li><a href="#" data-reveal-id="add_remove">Add / Remove User</a></li>
+	      		<li><a href="#" data-reveal-id="edit">Edit User Details</a> </li>
+	      	</ul>
+	      	</li>
+
+	      <li class="divider"></li> 
+	      <li><a href="#" data-reveal-id="profile">Personal Profile</a></li>
 	      <li class="divider"></li>          
 	    </ul>
 	    <ul class="right">
@@ -25,3 +34,4 @@
 	    </ul>
 	</nav>
 </div>
+
