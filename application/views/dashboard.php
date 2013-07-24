@@ -6,10 +6,10 @@
 					<div class='small-6 large-2 columns'>
 						<th>ID</th>
 					</div>
-					<div class='small-6 large-2 columns'>
+					<div class='small-6 large-3 columns'>
 						<th>Name</th>
 					</div>
-					<div class='small-8 large-2 columns'>	
+					<div class='small-8 large-3 columns'>	
 						<th>Email</th>
 					</div>	
 					<div class='small-2 large-2 columns'>

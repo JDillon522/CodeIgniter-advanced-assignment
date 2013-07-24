@@ -33,11 +33,11 @@ class Dashboard extends CI_Controller
 		$this->load->view('headinfo', $data);
 		if ($this->admin()) 
 		{
-			$this->load->view('navbar_admin');
+			$this->load->view('navbar_admin', $data);
 		}
 		else
 		{
-			$this->load->view('navbar');
+			$this->load->view('navbar', $data);
 		}
 		$this->load->view('dashboard', $data);
 		$this->load->view('bottom', $data);

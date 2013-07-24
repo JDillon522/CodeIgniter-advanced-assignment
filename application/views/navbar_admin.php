@@ -16,10 +16,11 @@
 	      <li><a href="/dashboard/index">Dashboard</a></li>
 	      <li class="divider"></li>
 	      
-	      <li class="has-dropdown"><a href="#">Admin</a>
+	      <li class="has-dropdown"><a>Admin</a>
 	      	<ul class="dropdown">
-	      		<li><a href="#" data-reveal-id="add_remove">Add / Remove User</a></li>
-	      		<li><a href="#" data-reveal-id="edit">Edit User Details</a> </li>
+	      		<li><a href="#" data-reveal-id="add_user">Add User</a></li>
+	      		<li><a href="#" data-reveal-id="remove_user">Remove User</a></li>
+	      		<li><a href="#" data-reveal-id="edit_user">Edit User Details</a> </li>
 	      	</ul>
 	      	</li>
 
@@ -33,5 +34,143 @@
 	    	<li class="divider"></li>
 	    </ul>
 	</nav>
+</div>
+
+<!-- Modals -->
+
+<!-- Add User -->
+<div class="reveal-modal small" id="add_user">
+	<h3>Add User:</h3>
+	<form method="post" action="../user/process_registration" id="register_form">
+		<input type="hidden" name="action" value="register">
+		<label>First Name:</label>
+		<input type="text" id="first_name" name="first_name" placeholder="First Name" />
+		<label>Last Name:</label>
+		<input type="text" id="last_name" name="last_name" placeholder="Last Name" />
+		<label>Email Address:</label>
+		<input type="text" id="email" name="email" placeholder="Email" />	
+		<label>Password:</label>
+		<input type="password" id="password1" name="password1" placeholder="Password" />
+		<label>Confirm Your Password:</label>
+		<input type="password" id="password2" name="password2" placeholder="Confirm Password" />
+		<br />
+		<input type="submit" id="submitbtn" placeholder="Submit" class="button"/>	
+	</form>
+	<a class="close-reveal-modal">&#215;</a>
+</div>
+
+<!-- Remove User -->
+<div class="reveal-modal small" id="remove_user">
+	<h3>Remove a User:</h3>
+		<div class="row">
+			<table>
+				<thead>
+					<tr>
+						<div class='large-3 columns'>
+							<th>ID</th>
+						</div>
+						<div class='arge-3 columns'>
+							<th>Name</th>
+						</div>
+						<div class='large-3 columns'>	
+							<th>Email</th>
+						</div>	
+						<div class='large-3 columns'>
+							<th>Delete</th>
+						</div>
+					</tr>	
+				</thead>
+				<tbody>
+					<?php  
+					foreach ($view_data as $key)
+					{
+						$html = "
+						<tr>
+							<div class='large-3 columns'>
+								<td>
+								#{$key['id']}
+								</td>
+							</div>
+							<div class='large-3 columns'>
+								<td>
+								{$key['first_name']} {$key['last_name']}
+								</td>
+							</div>
+							<div class='large-3 columns'>
+								<td>
+								{$key['email']}
+								</td>
+							</div>	
+							<div class='large-3 columns'>
+							<th><button class='button alert'>Delete</button></th>
+						</div>
+						</tr>";
+						echo $html;
+					} ?>
+				</tbody>
+			</table>
+		</div>
+	<a class="close-reveal-modal">&#215;</a>
+</div>
+
+<!-- Edit User -->
+<div class="reveal-modal small" id="edit_user">
+	<h3>Remove a User:</h3>
+		<div class="row">
+			<table>
+				<thead>
+					<tr>
+						<div class='large-3 columns'>
+							<th>ID</th>
+						</div>
+						<div class='arge-3 columns'>
+							<th>Name</th>
+						</div>
+						<div class='large-3 columns'>	
+							<th>Email</th>
+						</div>	
+						<div class='large-3 columns'>
+							<th>Edit</th>
+						</div>
+					</tr>	
+				</thead>
+				<tbody>
+					<?php  
+					foreach ($view_data as $key)
+					{
+						$html = "
+						<tr>
+							<div class='large-3 columns'>
+								<td>
+								#{$key['id']}
+								</td>
+							</div>
+							<div class='large-3 columns'>
+								<td>
+								{$key['first_name']} {$key['last_name']}
+								</td>
+							</div>
+							<div class='large-3 columns'>
+								<td>
+								{$key['email']}
+								</td>
+							</div>	
+							<div class='large-3 columns'>
+							<th><button class='button success'>Edit</button></th>
+						</div>
+						</tr>";
+						echo $html;
+					} ?>
+				</tbody>
+			</table>
+		</div>
+	<a class="close-reveal-modal">&#215;</a>
+</div>
+
+<!-- Pofile -->
+<div class="reveal-modal small" id="profile">
+	<h3>Login:</h3>
+		add remove
+	<a class="close-reveal-modal">&#215;</a>
 </div>
 
