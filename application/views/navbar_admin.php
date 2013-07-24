@@ -1,3 +1,37 @@
+<script type="text/javascript">
+	$(document).ready(function(){
+		$('#register_form').submit(function(){
+			$.post
+			(
+				$(this).attr('action'),
+				$(this).serialize(),
+				function(data){
+					console.log(data);
+					$('#add_user_alert_box').html(data);
+				},
+				"json"
+			);
+			return false;
+		});
+	});
+</script>
+<script type="text/javascript">
+	$(document).on('submit', '#delete_form', function(){ 
+		$.post
+		(
+			$(this).attr('action'),
+			$(this).serialize(),
+			function(data){
+				console.log(data);
+				$('#delete_alert_box').html(data);
+			},
+			"json"
+		);
+		return false;
+	});
+</script>
+
+<!-- Navbar -->
 <div class='large-12'>
 	<nav class="top-bar">
 	  <ul class="title-area">
@@ -41,7 +75,7 @@
 <!-- Add User -->
 <div class="reveal-modal small" id="add_user">
 	<h3>Add User:</h3>
-	<form method="post" action="../user/process_registration" id="register_form">
+	<form method="post" action="../user/process_registration_admin" id="register_form">
 		<input type="hidden" name="action" value="register">
 		<label>First Name:</label>
 		<input type="text" id="first_name" name="first_name" placeholder="First Name" />
@@ -56,66 +90,60 @@
 		<br />
 		<input type="submit" id="submitbtn" placeholder="Submit" class="button"/>	
 	</form>
+	<!-- Alert Boxs -->
+		<div id="add_user_alert_box">
+		</div>
 	<a class="close-reveal-modal">&#215;</a>
 </div>
 
 <!-- Remove User -->
-<div class="reveal-modal small" id="remove_user">
+<div class="reveal-modal medium" id="remove_user">
 	<h3>Remove a User:</h3>
-		<div class="row">
+	
 			<table>
-				<thead>
-					<tr>
-						<div class='large-3 columns'>
-							<th>ID</th>
-						</div>
-						<div class='arge-3 columns'>
-							<th>Name</th>
-						</div>
-						<div class='large-3 columns'>	
-							<th>Email</th>
-						</div>	
-						<div class='large-3 columns'>
-							<th>Delete</th>
-						</div>
-					</tr>	
-				</thead>
-				<tbody>
-					<?php  
-					foreach ($view_data as $key)
-					{
-						$html = "
-						<tr>
-							<div class='large-3 columns'>
-								<td>
-								#{$key['id']}
-								</td>
-							</div>
-							<div class='large-3 columns'>
-								<td>
-								{$key['first_name']} {$key['last_name']}
-								</td>
-							</div>
-							<div class='large-3 columns'>
-								<td>
-								{$key['email']}
-								</td>
-							</div>	
-							<div class='large-3 columns'>
-							<th><button class='button alert'>Delete</button></th>
-						</div>
-						</tr>";
-						echo $html;
-					} ?>
-				</tbody>
-			</table>
-		</div>
+		<thead>
+			<tr>
+				<th width="50">ID</th>
+				<th width="180">Name</th>
+				<th width="280">Email</th>
+				<th width="110">Delete</th>
+			</tr>	
+		</thead>
+		<tbody>
+			<?php  
+			foreach ($view_data as $key)
+			{
+				$html = "
+				<tr>
+					<td>
+					#{$key['id']}
+					</td>
+					<td>
+					{$key['first_name']} {$key['last_name']}
+					</td>
+					<td>
+					{$key['email']}
+					</td>
+					<td>
+						<form method='post' action='/user/delete_user/' id='delete_form'>
+							<input type='hidden' name='user_id' value='{$key['id']}'>
+							<input type='submit' name='submit' class='button alert' value='Delete'>
+						</form>
+					</td>
+				</tr>";
+				echo $html;
+			} ?>
+		</tbody>
+	</table>
+	<!-- Alert Boxs -->
+	<div id="delete_alert_box">
+	</div>
 	<a class="close-reveal-modal">&#215;</a>
 </div>
 
 <!-- Edit User -->
 <div class="reveal-modal small" id="edit_user">
-	<h3>Remove a User:</h3>
+	<h3>Edit a User:</h3>
 		<div class="row">
 			<table>
 				<thead>
@@ -156,7 +184,7 @@
 								</td>
 							</div>	
 							<div class='large-3 columns'>
-							<th><button class='button success'>Edit</button></th>
+							<th><button data-reveal-id='edit_user_2' class='button success'>Edit</button></th>
 						</div>
 						</tr>";
 						echo $html;
@@ -164,6 +192,21 @@
 				</tbody>
 			</table>
 		</div>
+	<a class="close-reveal-modal">&#215;</a>
+</div>
+
+<!-- Edit User 2 -->
+<div class="reveal-modal small" id="edit_user_2">
+	<?php $temp_session = $this->session->userdata('user_session'); ?>
+	<h3>Personal Profile</h3>
+	<p>Name: <?php echo $temp_session->first_name . " " . $temp_session->last_name ?></p>
+	<p>Eamil: <?php echo $temp_session->email ?></p>
+	<p>ID #: <?php echo $temp_session->id?></p>
+	<p>Status: <?php if ($temp_session->id == 1) 
+						{
+						echo "Admin";
+						}
+						else{ echo "User"; } ?></p>
 	<a class="close-reveal-modal">&#215;</a>
 </div>
 
@@ -181,4 +224,6 @@
 						else{ echo "User"; } ?></p>
 	<a class="close-reveal-modal">&#215;</a>
 </div>
+
+
 
