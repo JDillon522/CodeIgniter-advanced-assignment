@@ -7,9 +7,9 @@ class Dashboard extends CI_Controller
 	public function __construct()
 	{
 		parent:: __construct();
-		$this->load->model('Dashboard_model');
+		$this->load->model('User_model');
 		$logged_in = $this->check_session();
-		$this->view_data = $this->Dashboard_model->display_users();
+		$this->user_data = $this->User_model->display_users();
 	}
 
 	private function check_session()
@@ -27,7 +27,7 @@ class Dashboard extends CI_Controller
 			'addons' => '
 			<link rel="stylesheet" type="text/css" href="../../assets/CSS/base.css">
 			<link rel="stylesheet" type="text/css" href="../../assets/CSS/dashboard.css">',
-			'view_data' => $this->view_data
+			'user_data' => $this->user_data
 			);
 
 		$this->load->view('headinfo', $data);

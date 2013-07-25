@@ -32,6 +32,18 @@ class User_model extends CI_Model
 	{
 		return $this->db->delete('comments', array('comments.users_id' => $input));
 	}
+
+	public function display_users()
+	{
+		$result = $this->db->get('users');
+		return $result->result_array();
+	}
+	
+	public function edit_user()
+	{
+		return $this->db->get('users');
+	}
+
 }
 
 //end of class User

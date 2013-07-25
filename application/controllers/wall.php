@@ -4,14 +4,21 @@ class Wall extends CI_Controller
 {
 	var $view_data;
 	var $comment_data;
+	var $wall_id;
 
 	public function __construct()
 	{
 		parent:: __construct();
+		$this->load->model('User_model');
 		$this->load->model('Post_model');
 		$this->load->model('Comment_model');
-		$this->view_data = $this->display_post();
+
+		$this->wall_id = $this->uri->segment(3);
+		// echo $this->wall_id;
+		$this->view_data = $this->display_post($this->wall_id);
+
 		$logged_in = $this->check_session();
+		$this->output->enable_profiler(TRUE);
 	}
 
 	private function check_session()
@@ -29,19 +36,21 @@ class Wall extends CI_Controller
 			'addons' => '<link rel="stylesheet" type="text/css" href="../../assets/CSS/wall.css">
 			<link rel="stylesheet" type="text/css" href="../../assets/CSS/base.css">',
 			'scripts' => ' ',
-			'posts' => $this->view_data
+			'posts' => $this->view_data,
 			);
 
 		$this->load->view('headinfo', $data);
 		if ($this->admin()) 
 		{
-			$this->load->view('navbar_admin');
+			$this->user_data = $this->User_model->display_users();
+			$data['user_data'] = $this->user_data;
+			$this->load->view('navbar_admin', $data);
 		}
 		else
 		{
 			$this->load->view('navbar');
 		}
-		$this->load->view('wall', $data);
+		$this->load->view('wall');
 		$this->load->view('bottom', $data);
 		
 	}
@@ -64,15 +73,16 @@ class Wall extends CI_Controller
 		$data = array(
 			'users_id' => $this->input->post('user_id'),
 			'text' => $this->input->post('post-text'),
+			'receiver_id' => $this->input->post('receiver_id')
 			);
 		$post = $this->Post_model->log_post($data);	
-		header('location: /wall/index');
+		echo json_encode('TRUE');
 	}
 
 
-	public function display_post()
+	public function display_post($wall_id)
 	{
-		$content = $this->Post_model->pull_post();
+		$content = $this->Post_model->pull_post($wall_id);
 		$html_posts = NULL;
 		foreach ($content as $key) 
 		{
@@ -149,6 +159,5 @@ class Wall extends CI_Controller
 		}
 		return $html_comments;
 	}
-
 
 }

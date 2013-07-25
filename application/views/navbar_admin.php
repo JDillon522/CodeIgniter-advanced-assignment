@@ -1,3 +1,5 @@
+
+
 <script type="text/javascript">
 	$(document).ready(function(){
 		$('#register_form').submit(function(){
@@ -111,7 +113,7 @@
 		</thead>
 		<tbody>
 			<?php  
-			foreach ($view_data as $key)
+			foreach ($user_data as $key)
 			{
 				$html = "
 				<tr>
@@ -164,7 +166,7 @@
 				</thead>
 				<tbody>
 					<?php  
-					foreach ($view_data as $key)
+					foreach ($user_data as $key)
 					{
 						$html = "
 						<tr>
@@ -197,16 +199,23 @@
 
 <!-- Edit User 2 -->
 <div class="reveal-modal small" id="edit_user_2">
-	<?php $temp_session = $this->session->userdata('user_session'); ?>
-	<h3>Personal Profile</h3>
-	<p>Name: <?php echo $temp_session->first_name . " " . $temp_session->last_name ?></p>
-	<p>Eamil: <?php echo $temp_session->email ?></p>
-	<p>ID #: <?php echo $temp_session->id?></p>
-	<p>Status: <?php if ($temp_session->id == 1) 
-						{
-						echo "Admin";
-						}
-						else{ echo "User"; } ?></p>
+	<form action="/user/edit_user" method="post" id="edit_user_form">
+		<input type="hidden" name="choose_user" id="choose_user" value="choose_user">
+		<!-- <select name="user" id="user_selector"> -->
+		<?php
+			$result = $this->User_model->edit_user();
+			echo "<pre>";
+			var_dump($result);
+			echo "</pre>";
+			// foreach ($result as $key) 
+			// { 
+			// 	echo "<option>{$key->first_name}</option>";
+			// }
+		?>
+		<!-- </select> -->
+
+		<input type="submit" name="submit" value="Submit" class="btn">
+	</form>
 	<a class="close-reveal-modal">&#215;</a>
 </div>
 

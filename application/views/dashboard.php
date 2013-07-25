@@ -16,13 +16,13 @@
 						<th>Status</th>
 					</div>
 					<div class='small-2 large-2 columns'>
-						<th>Post a Message</th>
+						<th>Send a Message</th>
 					</div>
 				</tr>	
 			</thead>
 			<tbody>
 				<?php  
-				foreach ($view_data as $key)
+				foreach ($user_data as $key)
 				{
 					$html = "
 					<tr>
@@ -58,7 +58,7 @@
 						</td>
 					<div class='small-4 large-2 columns'>
 						<td>
-							<button>Go</button>
+							<a class='button' href='/wall/index/{$key['id']}'>Go</a>
 						</td>
 					</div>	
 					</tr>";
