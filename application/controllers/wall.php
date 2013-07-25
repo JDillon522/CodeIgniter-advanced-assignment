@@ -14,11 +14,9 @@ class Wall extends CI_Controller
 		$this->load->model('Comment_model');
 
 		$this->wall_id = $this->uri->segment(3);
-		// echo $this->wall_id;
 		$this->view_data = $this->display_post($this->wall_id);
 
 		$logged_in = $this->check_session();
-		$this->output->enable_profiler(TRUE);
 	}
 
 	private function check_session()
@@ -30,13 +28,15 @@ class Wall extends CI_Controller
 	}
 
 	public function index()
-	{	
+	{
+		$user_info = $this->wall_user_info();
 		$data = array(
 			'title' => 'Main',
 			'addons' => '<link rel="stylesheet" type="text/css" href="../../assets/CSS/wall.css">
 			<link rel="stylesheet" type="text/css" href="../../assets/CSS/base.css">',
 			'scripts' => ' ',
 			'posts' => $this->view_data,
+			'user_info' => $user_info,
 			);
 
 		$this->load->view('headinfo', $data);
@@ -50,9 +50,14 @@ class Wall extends CI_Controller
 		{
 			$this->load->view('navbar');
 		}
-		$this->load->view('wall');
-		$this->load->view('bottom', $data);
-		
+		$this->load->view('wall', $data);
+		$this->load->view('bottom', $data);	
+	}
+
+	public function wall_user_info()
+	{
+		$this->wall_id = $this->uri->segment(3);
+		return $this->user_info = $this->User_model->wall_user_info($this->wall_id);
 	}
 
 	public function admin()
@@ -70,13 +75,14 @@ class Wall extends CI_Controller
 
 	public function add_post()
 	{
+		$return_uri = $this->input->post('receiver_id');
 		$data = array(
 			'users_id' => $this->input->post('user_id'),
 			'text' => $this->input->post('post-text'),
 			'receiver_id' => $this->input->post('receiver_id')
 			);
 		$post = $this->Post_model->log_post($data);	
-		echo json_encode('TRUE');
+		header('location: /wall/index/' . $return_uri);
 	}
 
 

@@ -2,6 +2,7 @@
 
 class User extends CI_Controller
 {
+
 	//initalization
 	public function __construct()
 	{
@@ -26,22 +27,32 @@ class User extends CI_Controller
 			
 			$data = array();
 			$data['email'] = $this->input->post('email');
-			
-			$user = $this->User_model->get_user($data);
-		
-			$decrypted_password = $this->encrypt->decode($user->password);
 
-			if (count($user) > 0 AND $decrypted_password == $this->input->post('password0')) 
+			$user = $this->User_model->get_user($data);
+
+			if (count($user) > 0) 
 			{
-				$this->session->set_userdata('user_session', $user);
-				echo json_encode("success");
+				$decrypted_password = $this->encrypt->decode($user->password);
+
+				if ($decrypted_password == $this->input->post('password0')) 
+				{
+					$this->session->set_userdata('user_session', $user);
+					echo json_encode("success");
+				}
+				else
+				{
+					$errors = "<div class='alert-box alert' id='error-box'><p>Your login information did not match our reccords. Try again</p></div>";
+					echo json_encode($errors);
+				}
 			}
 			else
 			{
 				$errors = "<div class='alert-box alert' id='error-box'><p>Your login information did not match our reccords. Try again</p></div>";
+				echo json_encode($errors);
+			}
+			
 
-			echo json_encode($errors);
-			}		
+					
 		}
 	}
 
@@ -119,8 +130,11 @@ class User extends CI_Controller
 		$delete_user = $this->User_model->delete_user($input);
 
 		$deleted = "<div class='alert-box success' id='success-box'><p>User deleted.</p></div>";
-		echo json_encode($deleted);
-		
+		echo json_encode($deleted);	
 	}
 
+	public function edit_user()
+	{
+		$this->load->view('edit_user');
+	}
 }

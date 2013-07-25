@@ -117,21 +117,13 @@
 			{
 				$html = "
 				<tr>
-					<td>
-					#{$key['id']}
-					</td>
-					<td>
-					{$key['first_name']} {$key['last_name']}
-					</td>
-					<td>
-					{$key['email']}
-					</td>
-					<td>
-						<form method='post' action='/user/delete_user/' id='delete_form'>
+					<td>#{$key['id']}</td>
+					<td>{$key['first_name']} {$key['last_name']}</td>
+					<td>{$key['email']}</td>
+					<td><form method='post' action='/user/delete_user/' id='delete_form'>
 							<input type='hidden' name='user_id' value='{$key['id']}'>
 							<input type='submit' name='submit' class='button alert' value='Delete'>
-						</form>
-					</td>
+						</form></td>
 				</tr>";
 				echo $html;
 			} ?>
@@ -144,7 +136,7 @@
 </div>
 
 <!-- Edit User -->
-<div class="reveal-modal small" id="edit_user">
+<div class="reveal-modal medium" id="edit_user">
 	<h3>Edit a User:</h3>
 		<div class="row">
 			<table>
@@ -162,7 +154,7 @@
 						<div class='large-3 columns'>
 							<th>Edit</th>
 						</div>
-					</tr>	
+					</tr>
 				</thead>
 				<tbody>
 					<?php  
@@ -170,25 +162,12 @@
 					{
 						$html = "
 						<tr>
-							<div class='large-3 columns'>
-								<td>
-								#{$key['id']}
-								</td>
-							</div>
-							<div class='large-3 columns'>
-								<td>
-								{$key['first_name']} {$key['last_name']}
-								</td>
-							</div>
-							<div class='large-3 columns'>
-								<td>
-								{$key['email']}
-								</td>
-							</div>	
-							<div class='large-3 columns'>
-							<th><button data-reveal-id='edit_user_2' class='button success'>Edit</button></th>
-						</div>
-						</tr>";
+							<td>#{$key['id']}</td>
+							<td>{$key['first_name']} {$key['last_name']}</td>
+							<td>{$key['email']}</td>
+							<td><button class='button' data-reveal-id='edit_user_{$key['id']}'>Edit</button></td>				
+						</tr>";	
+
 						echo $html;
 					} ?>
 				</tbody>
@@ -198,26 +177,36 @@
 </div>
 
 <!-- Edit User 2 -->
-<div class="reveal-modal small" id="edit_user_2">
-	<form action="/user/edit_user" method="post" id="edit_user_form">
-		<input type="hidden" name="choose_user" id="choose_user" value="choose_user">
-		<!-- <select name="user" id="user_selector"> -->
-		<?php
-			$result = $this->User_model->edit_user();
-			echo "<pre>";
-			var_dump($result);
-			echo "</pre>";
-			// foreach ($result as $key) 
-			// { 
-			// 	echo "<option>{$key->first_name}</option>";
-			// }
-		?>
-		<!-- </select> -->
+<?php
+foreach ($user_data as $key) 
+{	
+	$edit_user_modal = "
+	<div class='reveal-modal small' id='edit_user_{$key['id']}'>
+		<h3>Edit {$key['first_name']} {$key['last_name']}'s Account:</h3>
 
-		<input type="submit" name="submit" value="Submit" class="btn">
-	</form>
-	<a class="close-reveal-modal">&#215;</a>
-</div>
+		<form method='post' action='../user/edit_user' id='edit_user_form'>
+			<input type='hidden' name='action' value='register'>
+			<label>First Name:</label>
+			<input type='text' id='first_name' name='first_name' placeholder='{$key['first_name']}' />
+			<label>Last Name:</label>
+			<input type='text' id='last_name' name='last_name' placeholder='{$key['last_name']}' />
+			<label>Email Address:</label>
+			<input type='text' id='email' name='email' placeholder='{$key['email']}' />	
+		
+			<input type='submit' id='submitbtn' placeholder='Submit' class='button'/>	
+		</form>				 
+			
+		<a class='close-reveal-modal'>&#215;</a>
+	</div>";
+	echo $edit_user_modal;	
+}
+
+?>
+
+
+
+
+
 
 <!-- Pofile -->
 <div class="reveal-modal small" id="profile">
@@ -233,6 +222,7 @@
 						else{ echo "User"; } ?></p>
 	<a class="close-reveal-modal">&#215;</a>
 </div>
+
 
 
 

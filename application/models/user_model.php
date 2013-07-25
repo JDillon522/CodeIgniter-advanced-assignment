@@ -38,6 +38,12 @@ class User_model extends CI_Model
 		$result = $this->db->get('users');
 		return $result->result_array();
 	}
+
+	public function wall_user_info($uri)
+	{
+		$result = $this->db->get_where('users', array('id' => $uri));
+		return $result->result_array();
+	}
 	
 	public function edit_user()
 	{
