@@ -1,5 +1,3 @@
-
-
 <script type="text/javascript">
 	$(document).ready(function(){
 		$('#register_form').submit(function(){
@@ -26,6 +24,20 @@
 			function(data){
 				console.log(data);
 				$('#delete_alert_box').html(data);
+			},
+			"json"
+		);
+		return false;
+	});
+
+	$(document).on('submit', '#edit_user_form', function(){ 
+		$.post
+		(
+			$(this).attr('action'),
+			$(this).serialize(),
+			function(data){
+				console.log(data);
+				$('#edit_user_alert_box').html(data);
 			},
 			"json"
 		);
@@ -142,18 +154,10 @@
 			<table>
 				<thead>
 					<tr>
-						<div class='large-3 columns'>
-							<th>ID</th>
-						</div>
-						<div class='arge-3 columns'>
-							<th>Name</th>
-						</div>
-						<div class='large-3 columns'>	
-							<th>Email</th>
-						</div>	
-						<div class='large-3 columns'>
-							<th>Edit</th>
-						</div>
+						<th width="50">ID</th>
+						<th width="180">Name</th>
+						<th width="280">Email</th>
+						<th width="110">Edit</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -182,31 +186,31 @@ foreach ($user_data as $key)
 {	
 	$edit_user_modal = "
 	<div class='reveal-modal small' id='edit_user_{$key['id']}'>
+
 		<h3>Edit {$key['first_name']} {$key['last_name']}'s Account:</h3>
 
 		<form method='post' action='../user/edit_user' id='edit_user_form'>
-			<input type='hidden' name='action' value='register'>
+			<input type='hidden' name='user_id' value='{$key['id']}'>
 			<label>First Name:</label>
 			<input type='text' id='first_name' name='first_name' placeholder='{$key['first_name']}' />
 			<label>Last Name:</label>
 			<input type='text' id='last_name' name='last_name' placeholder='{$key['last_name']}' />
 			<label>Email Address:</label>
 			<input type='text' id='email' name='email' placeholder='{$key['email']}' />	
-		
+			<label>Password:</label>
+			<input type='password' id='password1' name='password1' placeholder='New Password' />
+			<label>Confirm Your Password:</label>
+			<input type='password' id='password2' name='password2' placeholder='Confirm New Password' />
 			<input type='submit' id='submitbtn' placeholder='Submit' class='button'/>	
 		</form>				 
-			
+		<div id='edit_user_alert_box'>
+		</div>
 		<a class='close-reveal-modal'>&#215;</a>
 	</div>";
 	echo $edit_user_modal;	
 }
 
 ?>
-
-
-
-
-
 
 <!-- Pofile -->
 <div class="reveal-modal small" id="profile">
@@ -220,9 +224,34 @@ foreach ($user_data as $key)
 						echo "Admin";
 						}
 						else{ echo "User"; } ?></p>
+	<button class='button' data-reveal-id='profile_edit'>Edit Your Information</button>
 	<a class="close-reveal-modal">&#215;</a>
 </div>
 
+<!-- Edit profile -->
+<div class="reveal-modal small" id="profile_edit">
+	<?php $temp_session = $this->session->userdata('user_session'); ?>
 
+	<form method='post' action='../user/edit_user' id='edit_user_form'>
+		<input type='hidden' name='user_id' value='<?php echo $temp_session->id?>'>
+		<label>First Name:</label>
+		<input type='text' id='first_name' name='first_name' placeholder='<?php echo $temp_session->first_name ?>' />
+		<label>Last Name:</label>
+		<input type='text' id='last_name' name='last_name' placeholder='<?php echo $temp_session->last_name ?>' />
+		<label>Email Address:</label>
+		<input type='text' id='email' name='email' placeholder='<?php echo $temp_session->email ?>' />	
+		<label>Password:</label>
+		<input type='password' id='password1' name='password1' placeholder='New Password' />
+		<label>Confirm Your Password:</label>
+		<input type='password' id='password2' name='password2' placeholder='Confirm New Password' />
+		<div class='row'>
+		<input type='submit' id='submitbtn' placeholder='Submit' class='button'/>	
+	</form>	
+	<button class='button alert' data-reveal-id='profile'>Cancle</button>
+		</div>
+		<div id='edit_user_alert_box'>
+		</div>
+	<a class="close-reveal-modal">&#215;</a>
+</div>
 
 

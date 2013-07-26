@@ -135,6 +135,33 @@ class User extends CI_Controller
 
 	public function edit_user()
 	{
-		$this->load->view('edit_user');
+		$this->load->library('form_validation');
+		$this->form_validation->set_rules('first_name', "First Name", 'alpha|required');
+		$this->form_validation->set_rules('last_name', "Last Name", 'alpha|required');
+		$this->form_validation->set_rules('email', 'Email', 'valid_email|required');
+		$this->form_validation->set_rules('password2', 'Password', 'password2[password1]');
+		$this->form_validation->set_rules('password1', 'Password', 'min_length[6]|required');
+
+		if ($this->form_validation->run() == FALSE) 
+		{
+			$errors = "<div class='alert-box alert' id='error-box'>" . validation_errors() . "</div>";
+			echo json_encode($errors);
+		}
+		else
+		{
+			$this->load->library('encrypt');
+			$encrypted_password = $this->encrypt->encode($this->input->post('password1'));
+			$user_id = $this->input->post('user_id');
+			$data = array(
+				'first_name' => $this->input->post('first_name'),
+				'last_name' => $this->input->post('last_name'),
+				'email' => $this->input->post('email'),
+				'password' => $encrypted_password
+				);
+			$user = $this->User_model->edit_user($data, $user_id);
+			$success = "<div class='alert-box success' id='success-box'><p>The account info has been updated.</p></div>";
+			echo json_encode($success);
+		}
+
 	}
 }

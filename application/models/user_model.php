@@ -45,9 +45,10 @@ class User_model extends CI_Model
 		return $result->result_array();
 	}
 	
-	public function edit_user()
+	public function edit_user($data, $users_id)
 	{
-		return $this->db->get('users');
+		return $this->db->where('id', $users_id)
+						->update('users', $data);
 	}
 
 }
